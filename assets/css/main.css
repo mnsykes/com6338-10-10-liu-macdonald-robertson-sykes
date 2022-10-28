@@ -1,0 +1,25 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	scroll-behavior: smooth;
+}
+
+.container {
+	max-width: 80%;
+	margin: 200px auto;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	text-align: center;
+}
+
+h1 {
+	font-size: 64px;
+	font-weight: 300;
+	padding: 50px 0;
+}
+
+h3 {
+	font-size: 32px;
+	font-weight: 100;
+	padding: 5px 0;
+}
