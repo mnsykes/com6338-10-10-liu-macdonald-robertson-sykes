@@ -1,0 +1,253 @@
+/* 
+THESE ARE ALL GENERIC COMPONENTS THAT ARE MEANT TO BE REUSED ON ANY PAGE. THESE RULES DEFINE THE STRUCTURE OF 
+THE COMPONENT: SIZE, SHAPE, ETC. TO CUSTOMIZE ON YOUR PAGE ADD A MODIFIER CLASS BASED ON THE MAIN COMPONENT CLASS
+TO yourpagename.css USING BEM NAMING CONVENTIONS.
+THIS STYLE SHEET IS BROKEN INTO TWO PARTS: 
+1. COMPONENTS THAT CAN BE MODIFIED 
+2. COMPONENTS THAT CAN'T BE MODIFIED
+PLEASE DON'T ADD ANY MODIFIER CLASSES TO yourpagename.css FROM THE LIST OF COMPONENTS THAT ARE NOT TO BE MODIFIED.
+*/
+
+/* 
+-----------------------------------------------------------------------------------------
+-----------------------------   MODIFY THESE COMPONENTS    ------------------------------
+-----------------------------------------------------------------------------------------
+*/
+
+/* START BUTTONS 
+------------------------------------------------------------------
+LET'S MAKE A BUTTON
+1. ADD CLASS OF .btn
+2. CHOOSE COLOR OF BUTTON 
+EX. PRIMARY RED BUTTON
+<button class="btn btn_primary-red">Button Text</button>
+------------------------------------------------------------------
+*/
+.btn {
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 1.5rem 4rem;
+	font-size: 2rem;
+	transition-duration: 0.4s;
+	border-radius: 10px;
+	text-transform: uppercase;
+	color: var(--primary_white);
+}
+
+.btn:hover {
+	animation: hover 0.25s ease-in-out forwards;
+}
+
+@keyframes hover {
+	to {
+		transform: translateY(-5px);
+		background-color: var(--accent_red);
+		color: var(--primary_white);
+	}
+}
+
+.btn_primary-gray {
+	background: var(--primary_gray);
+}
+
+.btn_primary-black {
+	background: var(--primary_black);
+}
+
+.btn_primary-white {
+	background: var(--primary_white);
+}
+
+/* END BUTTONS */
+
+/* START HERO 
+------------------------------------------------------------------
+THE MAKING OF A HERO!
+1. CREATE A SECTION WITH CLASS OF .hero
+2. NEST DIV WITH CLASS OF .hero__jumbotron TO GET BASIC STYLES OF
+   A JUMBOTRON. ADD CLASS OF .hero__jumbotron_<yourpagename>
+3. GO TO yourpagename.css AND ADD THIS RULE: 
+   .hero__jumbotron_yourpagename {
+	height: 100%;
+	width: 100%;
+	background: url(<yourimagefile>);
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	padding-bottom: 3.5rem;
+	align-items: center;
+	text-align: center;
+   }
+   THIS MODIFIER CLASS IS WHERE YOU CAN ADD THE IMAGE YOU NEED
+   IN ADDITION TO ANY OTHER STYLING. PLEASE DON'T OVERRIDE BASIC
+   STYLES IN .hero__jumbotron
+EX. JUMBOTRON FOR SHOP PAGE
+<section class="hero">
+	<div class="hero__jumbotron hero__jumbotron_shop">
+		[ HERO CONTENT GOES HERE ]
+	</div>
+</section>
+------------------------------------------------------------------
+*/
+.hero {
+	height: 60rem;
+	width: 80vw;
+	margin: 0 auto 12.5rem auto;
+}
+
+/* END HERO */
+
+/* START CARDS 
+------------------------------------------------------------------
+MAKING A CARD
+1. CREATE A DIV WITH CLASS OF .card
+2. A CARD HAS THREE PARTS TO IT: HEADER, BODY AND FOOTER, WITH CLASSES
+   OF .card-header, .card-body, .card-footer. THESE CLASSES PROVIDE
+   THE BASIC STYLES FOR A CARD.
+3. ADD CLASSES OF .card-header_yourpagename, .card-body_yourpagename,
+   .card-footer_yourpagename TO EACH PART OF THE CARD.
+4. ADD THOSE MODIFIER CLASSES TO yourpagename.css. THIS IS WHERE
+   YOU CAN ADD CUSTOM COLORS, IMAGES, ETC. PLEASE DON'T OVERWRITE
+   ANY OF THE BASIC STYLING.
+EX. CARD FOR CHARACTER PAGE
+HTML
+<div class="card">
+	<div class="card-header card-header_character">
+		<p class="body-text">Dustin</p>
+	</div>
+	<div class="card-body card-body_character"></div>
+	<div class="card-footer card-footer_character">
+		<p class="body-text">The fun kid with the curly hair</p>
+	</div>
+</div>
+CSS RULES ADDED TO characters.css
+.card-header_character {
+	color: var(--primary_white);
+}
+.card-body_character {
+	background: url(../assets/images/ST360_03_MindFlayer.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.card-footer_character {
+	background: var(--primary_red);
+}
+------------------------------------------------------------------
+*/
+
+.card {
+	display: flex;
+	flex-direction: column;
+	height: auto;
+	max-width: 35rem;
+	padding: 2.5rem 2rem;
+	box-shadow: 0 0 15px var(--primary_black);
+	background: var(--primary_white);
+}
+
+.card-header,
+.card-footer,
+.card-body {
+	height: auto;
+	width: 100%;
+}
+
+.card-footer {
+	padding-top: 1.5rem;
+}
+
+.card-image {
+	max-width: 100%;
+	height: auto;
+	background: var(--primary_black);
+	opacity: 80%;
+}
+
+.card-link:hover {
+	cursor: pointer;
+	text-shadow: 0 0 6px var(--accent_red), 0 0 6px var(--accent_red), 0 0 6px var(--accent_red);
+}
+
+/* END CARDS */
+
+/* 
+-----------------------------------------------------------------------------------------
+-----------------------------DO NOT MODIFY THESE COMPONENTS------------------------------
+-----------------------------------------------------------------------------------------
+*/
+/* START HEADER */
+.header {
+	height: 12.5rem;
+	width: 100vw;
+	background-color: var(--primary_black);
+	grid-area: header;
+	display: flex;
+	/* margin-bottom: 5rem; */
+}
+/* END HEADER */
+
+/* START NAVIGATION */
+.nav {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-items: space-between;
+	align-items: center;
+}
+
+.nav__logo {
+	padding-left: 5rem;
+	width: 50%;
+}
+
+.nav__links {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+	width: 50%;
+	padding-right: 5rem;
+}
+
+.nav__link {
+	font-family: var(--st_book);
+	font-size: var(--md);
+	text-transform: uppercase;
+	margin-left: 2.5rem;
+}
+
+.nav__link_nav:hover,
+.nav__logo a:hover {
+	cursor: pointer;
+}
+
+.nav__link_social {
+	font-size: var(--lg);
+}
+
+.nav__link_social:hover {
+	text-shadow: 0 0 6px var(--primary_white), 0 0 6px var(--primary_white),
+		0 0 6px var(--primary_white);
+}
+
+/* END NAVIGATION */
+
+/* START FOOTER */
+.footer {
+	height: 12.5rem;
+	width: 100vw;
+	background-color: var(--primary_black);
+	grid-area: footer;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	/* margin-top: 12.5rem; */
+	padding-left: 5rem;
+}
+/* END FOOTER */
