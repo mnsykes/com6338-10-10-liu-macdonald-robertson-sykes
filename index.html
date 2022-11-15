@@ -3,31 +3,55 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300;1,400&display=swap"
+			rel="stylesheet"
+		/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<title>Untitled Group 2 Project</title>
 	</head>
 	<body>
-		<header style="background-color: black; display: grid; grid-template-columns: 10% 40% 9% 9% 9% 9% 14%;">
-		<a href="index.html">
-			<img src="assets/img/cryingjordan.jpeg" alt="Crying Michael Jordan" style="max-width: 75px">
-		</a>
-		<p style="color:white; font-size:xx-large; vertical-align: bottom; padding: 20px 0;">The Great NBA Stat Site</p>
-		<a href="index.html" style="font-size: xx-large; padding: 15px 0;">Home</a>
-		<a href="" style="font-size: xx-large; padding: 15px 0;">About</a>
-		<a href="" style="font-size: xx-large; padding: 15px 0;">Tickets</a>
-		<a href="" style="font-size: xx-large; padding: 15px 0;">Games</a>
-		<form style="padding: 25px 0;">
-			<input type="text" id="search" name="search">
-		</form>
-		</header>
-		<nav style="display: grid; grid-template-columns:auto auto auto;">
-			<a href="" style="text-align: center;">Teams</a>
-			<a href="" style="text-align: center;">Player</a>
-			<a href="" style="text-align: center;">Leaderboard</a>
-		</nav>
-		<div style="background-color: black;">
-		<img style="width: 50%; margin-left: auto; margin-right: auto; display: block;" src="assets/img/HeroImg.jfif">
+		<div id="grid">
+			<!-- START HEADER -->
+			<header class="header">
+				<!-- START NAV -->
+				<div class="nav__logo"></div>
+				<div class="nav__links">
+					<a href="" class="nav__link nav__link_nav"></a>
+					<a href="" class="nav__link nav__link_nav"></a>
+					<a href="" class="nav__link nav__link_nav"></a>
+				</div>
+				<!-- END NAV -->
+			</header>
+			<!-- END HEADER -->
+			<main class="main__wrapper">
+				<section id="content">
+					<h1>The Untitled Group Two Project</h1>
+					<h3>Arlo Liu</h3>
+					<h3>Nicholas MacDonald</h3>
+					<h3>Carmen Robertson</h3>
+					<h3>Matthew Sykes</h3>
+
+					<p class="team"></p>
+					<form id="nba" method="post">
+						<select class="teamSelect">
+							<option value="">Select a team</option>
+						</select>
+						<button type="submit" class="teamBtn">Submit</button>
+					</form>
+					<select class="yearSelect">
+						<option value="">Select a year</option>
+					</select>
+				</section>
+			</main>
+			<footer class="footer">
+				<div class="footer__logo"></div>
+				<div class="nav__links"></div>
+			</footer>
 		</div>
 		<script src="assets/js/main.js"></script>
 	</body>
