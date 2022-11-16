@@ -7,6 +7,7 @@ let Year = LocalDate.getFullYear()
 let Month = LocalDate.getMonth() + 1
 let Day = LocalDate.getDate()
 
+
 const options = {
 	method: "GET",
 	headers: {
@@ -42,4 +43,26 @@ fetch(`https://api-nba-v1.p.rapidapi.com/games?date=${Year}-${Month}-${Day}`, op
 .catch(err => {
 	console.log(err);
 });
+
+fetch("https://api-nba-v1.p.rapidapi.com/teams", options)
+	.then((response) => response.json())
+	.then((team) => {
+		console.log(team.response);
+		team.response.map((b) => {
+			if (b.nbaFranchise) {
+				let option = document.createElement("option");
+				option.value = b.id;
+				option.textContent = b.name;
+				teamSelect.appendChild(option);
+			}
+		});
+	})
+	.catch((err) => console.error(err));
+
+nbaEl.onsubmit = (e) => {
+	e.preventDefault();
+	let teamId = teamSelect.value;
+	location.href = `teams.html?id=${teamId}`;
+};
+
 
