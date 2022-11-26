@@ -1,20 +1,16 @@
 .heading {
 	font-size: var(--xxl);
-	font-family: var(--st_bold);
-	color: var(--primary_red);
 	text-transform: uppercase;
 }
 
 .subheading {
 	font-size: var(--xl);
-	font-family: var(--st_medium);
 	color: var(--primary_red);
 	text-transform: uppercase;
 }
 
 .section-headline {
 	font-size: var(--lg);
-	font-family: var(--st_medium);
 	color: var(--primary_red);
 	text-transform: uppercase;
 }
@@ -22,14 +18,11 @@
 .body-text {
 	font-size: var(--sm);
 	color: var(--primary_black);
-	font-family: var(--st_book);
 }
 
 a {
 	font-size: var(--sm);
 	text-decoration: none;
-	font-family: var(--st_book);
-	color: var(--primary_white);
 }
 
 .text-center {

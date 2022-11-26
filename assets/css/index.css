@@ -1,0 +1,74 @@
+.hero__jumbotron .hero__jumbotron_home .subheading {
+	color: whitesmoke;
+}
+
+.home_background {
+	height: 100%;
+	width: 100%;
+	background-image: url(../assets/images/sneaky-arts-main-2\ 2.jpeg);
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	padding-bottom: 3.5rem;
+	align-items: center;
+	text-align: center;
+}
+
+.game-block__result {
+	margin-bottom: 25px;
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	border: 2px solid #333333;
+}
+
+.game-block__score {
+	border: 2px solid #333;
+	font-size: 2.4rem;
+}
+
+.game-block__team {
+	font-size: 2.4rem;
+}
+
+.game-block__image {
+	height: 100%;
+	width: 100%;
+}
+
+.game-block__image img {
+	margin: 0 auto;
+	width: 50px;
+	height: 50px;
+}
+
+/* .heading_text_home {
+	margin-top: 10vh;
+	margin-bottom: 35vh;
+}
+
+.body-text_home {
+	color: var(--primary_white);
+	font-size: var(--lg);
+}
+
+.heading_home {
+	margin-bottom: 25rem;
+}
+
+.subheading_home {
+	font-size: var(--xl);
+} */
+
+.header_home,
+.footer_home {
+	margin: 0;
+}
+
+#content {
+	max-width: 50vw;
+	margin: 0 auto;
+}
