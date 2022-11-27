@@ -176,6 +176,19 @@ CSS RULES ADDED TO characters.css
 
 /* END CARDS */
 
+/* START TABLES */
+.scroll-table {
+	overflow-x: auto;
+}
+
+.freeze-col {
+	position: sticky;
+	left: 0;
+	background-color: white;
+}
+
+/* END TABLES */
+
 /* 
 -----------------------------------------------------------------------------------------
 -----------------------------DO NOT MODIFY THESE COMPONENTS------------------------------
@@ -204,6 +217,12 @@ CSS RULES ADDED TO characters.css
 .nav__logo {
 	padding-left: 5rem;
 	width: 50%;
+	height: 100%;
+}
+
+.nav__logo img {
+	max-height: 125px;
+	max-width: 125px;
 }
 
 .nav__links {
@@ -220,6 +239,7 @@ CSS RULES ADDED TO characters.css
 	font-size: var(--md);
 	text-transform: uppercase;
 	margin-left: 2.5rem;
+	color: var(--primary_white);
 }
 
 .nav__link_nav:hover,

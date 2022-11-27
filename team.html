@@ -18,18 +18,26 @@
 		<div id="grid">
 			<!-- START HEADER -->
 			<header class="header">
-				<!-- START NAV -->
-				<div class="nav__logo"></div>
-				<div class="nav__links">
-					<a href="home.html" class="nav__link nav__link_nav">HOME</a>
-					<a href="allplayers.html" class="nav__link nav__link_nav">PLAYERS</a>
-					<a href="" class="nav__link nav__link_nav">NEWS MAYBE</a>
-				</div>
-				<form action="" class="search">
-					<input type="text" class="player-search" placeholder="player last name" />
-					<button type="submit" class="search-btn">SUBMIT</button>
-				</form>
-				<!-- END NAV -->
+				<header class="header">
+					<!-- START NAV -->
+					<div class="nav">
+						<div class="nav__logo">
+							<a href="index.html">
+								<img src="assets/images/cryingjordan.png" />
+							</a>
+						</div>
+						<div class="nav__links">
+							<a href="team.html" class="nav__link nav__link_nav">Teams</a>
+							<a href="allplayers.html" class="nav__link nav__link_nav">Players</a>
+							<a href="" class="nav__link nav__link_nav">NEWS MAYBE</a>
+						</div>
+						<form action="" class="search-form">
+							<input type="text" class="player-search" placeholder="player last name" />
+							<button type="submit" class="search-btn">SUBMIT</button>
+						</form>
+					</div>
+					<!-- END NAV -->
+				</header>
 			</header>
 			<!-- END HEADER -->
 			<main class="main__wrapper">
@@ -51,6 +59,7 @@
 					</table>
 					<a href="index.html">Home</a>
 				</section>
+				<section class="team-news"></section>
 			</main>
 			<footer class="footer">
 				<div class="footer__logo"></div>
