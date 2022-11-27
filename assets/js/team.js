@@ -1,9 +1,14 @@
 // get value of id from query string and store in variable
 const params = new URLSearchParams(window.location.search);
+const searchForm = document.querySelector(".search-form");
+const teamSearch = document.querySelector(".team-search");
+let teamName = params.get("tname");
 let teamId = params.get("id");
 let teamInfo = document.querySelector(".team-info");
 let rosterTableBody = document.querySelector(".roster-table__body");
 const teamNews = document.querySelector(".team-news");
+let teamContent = document.querySelector("#content");
+
 
 // pass teamId variable to url to fetch the team
 const options = {
@@ -13,6 +18,41 @@ const options = {
 		"X-RapidAPI-Host": "api-nba-v1.p.rapidapi.com"
 	}
 };
+
+searchForm.onsubmit = async (e) => {
+	e.preventDefault();
+	let teamName = teamSearch.value.trim();
+	if (!teamName) return;
+	clearForm();
+	location = `player.html?lname=${teamName}`;
+};
+
+let query = "";
+if (teamName) {
+	query = `search=${teamName}`;
+} else if (teamId) {
+	query = `id=${teamId}`;
+}
+
+fetch(`https://api-nba-v1.p.rapidapi.com/standings?league=standard&season=2022&team=${query}`, options)
+	.then((response) => response.json())
+	.then((player) => {
+		player.response.map((p) => {
+			// console.log(p);
+			let teamInfo = document.createElement("div");
+			teamInfo.className = "team-info";
+			teamInfo.innerHTML = `
+				<img src="${t.team.logo}" style="height: 100px; width: 100px;">
+				<h2>${t.team.name}</h2>
+				<p>Overall record: ${t.win.total} - ${t.loss.total}</p>
+				<p>${t.conference.name} rank: ${t.conference.rank}</p>
+				<p>${t.division.name} rank: ${t.division.rank}</p>
+			`;
+			teamContent.appendChild(teamInfo);
+		});
+	})
+	.catch((err) => console.error(err));
+
 
 fetch(
 	`https://api-nba-v1.p.rapidapi.com/standings?league=standard&season=2022&team=${teamId}`,
