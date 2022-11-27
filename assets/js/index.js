@@ -1,7 +1,6 @@
 let nbaEl = document.querySelector("#nba");
 const searchForm = document.querySelector(".search-form");
 const playerSearch = document.querySelector(".player-search");
-let games = document.querySelector("#content");
 let main = document.querySelector(".main__wrapper");
 let LocalDate = new Date();
 let Year = LocalDate.getFullYear();
@@ -30,20 +29,6 @@ const newsOptions = {
 		"X-RapidAPI-Host": "nba-news-today.p.rapidapi.com"
 	}
 };
-
-fetch("https://nba-news-today.p.rapidapi.com/news", newsOptions)
-	.then((response) => response.json())
-	.then((headline) => {
-		for (let i = 0; i < 10; i++) {
-			let newStory = document.createElement("div");
-			console.log(headline[i].title);
-			newStory.innerHTML = `
-				<a href="${headline[i].url}" target="_blank">${headline[i].title}</a>
-			`;
-			headlines.appendChild(newStory);
-		}
-	})
-	.catch((err) => console.error(err));
 
 searchForm.onsubmit = async (e) => {
 	e.preventDefault();
@@ -107,7 +92,7 @@ const renderStandings = async ({
                         <img src=${logo} style="height: 20px; width: 20px;">
                     </a>
                 </td>
-                <td><a href="team.html?id=${id}">${name}</a></td>
+                <td><a href="team.html?id=${id}&nickname=">${name}</a></td>
                 <td>${win.total}</td>
                 <td>${loss.total}</td>
                 <td>${win.percentage}%</td>
@@ -163,6 +148,20 @@ const renderScores = async ({ teams: { visitors, home }, scores }) => {
             `;
 	gameDiv.appendChild(gameBlock);
 };
+
+fetch("https://nba-news-today.p.rapidapi.com/news", newsOptions)
+	.then((response) => response.json())
+	.then((headline) => {
+		for (let i = 0; i < 10; i++) {
+			let newStory = document.createElement("div");
+			console.log(headline[i].title);
+			newStory.innerHTML = `
+				<a href="${headline[i].url}" target="_blank">${headline[i].title}</a>
+			`;
+			headlines.appendChild(newStory);
+		}
+	})
+	.catch((err) => console.error(err));
 
 const clearForm = () => {
 	playerSearch.value = "";

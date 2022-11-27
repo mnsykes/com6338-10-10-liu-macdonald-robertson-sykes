@@ -3,6 +3,7 @@ const params = new URLSearchParams(window.location.search);
 let teamId = params.get("id");
 let teamInfo = document.querySelector(".team-info");
 let rosterTableBody = document.querySelector(".roster-table__body");
+const teamNews = document.querySelector(".team-news");
 
 // pass teamId variable to url to fetch the team
 const options = {
@@ -19,9 +20,10 @@ fetch(
 )
 	.then((response) => response.json())
 	.then((team) => {
-		console.log(team.response);
+		// console.log(team.response);
+
 		team.response.map((t) => {
-			console.log(t);
+			teamNickname = t.team.nickname;
 			teamInfo.innerHTML = `
 				<img src="${t.team.logo}" style="height: 100px; width: 100px;">
 				<h2>${t.team.name}</h2>
@@ -31,26 +33,29 @@ fetch(
 			`;
 		});
 	});
+
 fetch(`https://api-nba-v1.p.rapidapi.com/players/?team=${teamId}&season=2022`, options)
 	.then((response) => response.json())
 	.then((roster) => {
 		roster.response.map((r) => {
 			let rosterTableRow = document.createElement("tr");
 			let playerId = r.id;
-			// console.log(r);
-			rosterTableRow.innerHTML = `
-				<td>${r.leagues.standard.jersey}</td>
-				<td>
-					<a href="player.html?id=${playerId}">${r.firstname} ${r.lastname}</a>
-				</td>
-				<td>${r.leagues.standard.pos}</td>
-				<td>${r.height.feets}' ${r.height.inches}"</td>
-				<td>${r.weight.pounds}lbs</td>
-				<td>${r.birth.date}</td>
-				<td>${r.nba.pro}</td>
-				<td>${r.college}</td>
-			`;
-			rosterTableBody.appendChild(rosterTableRow);
+			console.log(r);
+			if (r.nba.start > 0) {
+				rosterTableRow.innerHTML = `
+					<td>${r.leagues.standard.jersey}</td>
+					<td>
+						<a href="player.html?id=${playerId}">${r.firstname} ${r.lastname}</a>
+					</td>
+					<td>${r.leagues.standard.pos}</td>
+					<td>${r.height.feets}' ${r.height.inches}"</td>
+					<td>${r.weight.pounds}lbs</td>
+					<td>${r.birth.date}</td>
+					<td>${r.nba.pro}</td>
+					<td>${r.college}</td>
+				`;
+				rosterTableBody.appendChild(rosterTableRow);
+			}
 		});
 	})
 	.catch((err) => console.error(err));
