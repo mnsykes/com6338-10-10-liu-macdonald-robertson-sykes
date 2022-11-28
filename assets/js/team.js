@@ -1,5 +1,8 @@
 // get value of id from query string and store in variable
 const params = new URLSearchParams(window.location.search);
+const searchForm = document.querySelector(".search-form");
+const teamSearch = document.querySelector(".team-search");
+let teamName = params.get("tname");
 const teamId = params.get("id");
 const teamInfo = document.querySelector(".team-info");
 const rosterTableBody = document.querySelector(".roster-table__body");
