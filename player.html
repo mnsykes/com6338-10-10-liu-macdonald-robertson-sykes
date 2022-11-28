@@ -27,7 +27,7 @@
 							</a>
 						</div>
 						<div class="nav__links">
-							<a href="index.html" class="nav__link nav__link__nav">Home</a> 
+							<a href="index.html" class="nav__link nav__link__nav">Home</a>
 							<a href="team.html" class="nav__link nav__link_nav">Teams</a>
 							<a href="allplayers.html" class="nav__link nav__link_nav">Players</a>
 						</div>
@@ -41,66 +41,48 @@
 			</header>
 			<!-- END HEADER -->
 			<main class="main__wrapper">
-				<section id="content">
-					<h2 class="subheading">Player Profile</h2>
-				</section>
-				<table class="totals-table">
-					<thead>
-						<h2 class="section-headline">Season Totals</h2>
-					</thead>
-					<tbody class="totals-table__body" style="width: 100%">
-						<tr>
-							<th>MP</th>
-							<th>FGM</th>
-							<th>FGA</th>
-							<th>FGP</th>
-							<th>TPM</th>
-							<th>TPA</th>
-							<th>TPP</th>
-							<th>FTM</th>
-							<th>FTA</th>
-							<th>FTP</th>
-							<th>STLS</th>
-							<th>BLKS</th>
-							<th>TOS</th>
-							<th>PF</th>
-							<th>OREB</th>
-							<th>DREB</th>
-							<th>TOTREB</th>
-							<th>ASST</th>
-							<th>PTS</th>
-						</tr>
-					</tbody>
-				</table>
-				<table class="averages-table">
-					<thead>
-						<h2 class="section-headline">Season Averages</h2>
-					</thead>
-					<tbody class="averages-table__body" style="width: 100%">
-						<tr>
-							<th>MP</th>
-							<th>FGM</th>
-							<th>FGA</th>
-							<th>FGP</th>
-							<th>TPM</th>
-							<th>TPA</th>
-							<th>TPP</th>
-							<th>FTM</th>
-							<th>FTA</th>
-							<th>FTP</th>
-							<th>STLS</th>
-							<th>BLKS</th>
-							<th>TOS</th>
-							<th>PF</th>
-							<th>OREB</th>
-							<th>DREB</th>
-							<th>TOTREB</th>
-							<th>ASST</th>
-							<th>PTS</th>
-						</tr>
-					</tbody>
-				</table>
-				<div class="scroll-table">
+				<section id="content"></section>
+				<div class="search-results scroll-table">
+					<table class="search-table">
+						<thead>
+							<h2 class="section-headline">Search Results</h2>
+						</thead>
+						<tbody class="search-table__body">
+							<tr>
+								<th></th>
+								<th class="body-text">PLAYER</th>
+								<th class="body-text">NUMBER</th>
+								<th class="body-text">POS</th>
+								<th class="body-text">TEAM</th>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="season-averages scroll-table">
+					<table class="averages-table">
+						<thead>
+							<h2 class="section-headline">Season Averages</h2>
+							<tr>
+								<th class="freeze-col body-text">SEASON</th>
+								<th class="body-text">TEAM</th>
+								<th class="body-text">GP</th>
+								<th class="body-text">GS</th>
+								<th class="body-text">MPG</th>
+								<th class="body-text">FG%</th>
+								<th class="body-text">FT%</th>
+								<th class="body-text">3P%</th>
+								<th class="body-text">TO</th>
+								<th class="body-text">BLK</th>
+								<th class="body-text">REB</th>
+								<th class="body-text">AST</th>
+								<th class="body-text">PTS</th>
+							</tr>
+						</thead>
+						<tbody class="averages-table__body"></tbody>
+						<tfoot class="career-averages"></tfoot>
+					</table>
+				</div>
+				<!-- <div class="scroll-table">
 					<table class="game-table">
 						<thead>
 							<h2 class="section-headline">Game Logs</h2>
@@ -130,7 +112,7 @@
 							</tr>
 						</tbody>
 					</table>
-				</div>
+				</div> -->
 			</main>
 			<!-- START FOOTER -->
 			<footer class="footer">
