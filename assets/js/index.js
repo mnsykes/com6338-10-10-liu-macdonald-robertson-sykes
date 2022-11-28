@@ -58,12 +58,15 @@ const getStandings = async () => {
 
 const getScores = async () => {
 	try {
-		const res = await fetch(`https://api-nba-v1.p.rapidapi.com/games?date=2022-11-22`, options);
-		// date=${Year}-${Month}-${Day}
+		const res = await fetch(
+			`https://api-nba-v1.p.rapidapi.com/games?date=${Year}-${Month}-${Day}`,
+			options
+		);
 		if (res.status !== 200) throw new Error("Error");
 		const data = await res.json();
 
 		data.response.map((score) => {
+			console.log(score);
 			renderScores(score);
 		});
 	} catch (err) {
@@ -88,11 +91,11 @@ const renderStandings = async ({
 	standsRow.innerHTML = `
                 <td>${conference.rank}.</td>
                 <td>
-                    <a href="team.html?id=${id}">
+                    <a href="team.html?tname=${name}">
                         <img src=${logo} style="height: 20px; width: 20px;">
                     </a>
                 </td>
-                <td><a href="team.html?id=${id}&nickname=">${name}</a></td>
+                <td><a href="team.html?tname=${name}&nickname=">${name}</a></td>
                 <td>${win.total}</td>
                 <td>${loss.total}</td>
                 <td>${win.percentage}%</td>
@@ -121,23 +124,23 @@ const renderScores = async ({ teams: { visitors, home }, scores }) => {
                     	${scores.visitors.points}
                     </div>
 					<div class="game-block__image">
-						<a href="team.html?id=${visitorTeamId}">
+						<a href="team.html?tname=${visitors.name}">
 							<img src="${visitors.logo}">
 						</a>
 					</div>
 					<div class="game-block__team text-center">
-						<a href="team.html?id=${visitorTeamId}">
+						<a href="team.html?tname=${visitors.name}">
 							${visitors.name}
 						</a>
 					</div>
                     <div class="text-center"> AT </div>
 					<div class="game-block__team text-center">
-						<a href="team.html?id=${homeTeamId}">
+						<a href="team.html?tname=${home.name}">
 							${home.name}
 						</a>
 					</div>
 					<div class="game-block__image">
-						<a href="team.html?id=${homeTeamId}">
+						<a href="team.html?tname=${home.name}">
 							<img src="${home.logo}">
 						</a>
 					</div>
@@ -149,19 +152,23 @@ const renderScores = async ({ teams: { visitors, home }, scores }) => {
 	gameDiv.appendChild(gameBlock);
 };
 
-fetch("https://nba-news-today.p.rapidapi.com/news", newsOptions)
-	.then((response) => response.json())
-	.then((headline) => {
+const getHeadlines = async () => {
+	try {
+		const res = await fetch("https://nba-news-today.p.rapidapi.com/news", newsOptions);
+		if (res.status !== 200) throw new Error("Headlines not found");
+		const headline = await res.json();
+
 		for (let i = 0; i < 10; i++) {
 			let newStory = document.createElement("div");
-			console.log(headline[i].title);
 			newStory.innerHTML = `
 				<a href="${headline[i].url}" target="_blank">${headline[i].title}</a>
 			`;
 			headlines.appendChild(newStory);
 		}
-	})
-	.catch((err) => console.error(err));
+	} catch (err) {
+		console.log(err.message);
+	}
+};
 
 const clearForm = () => {
 	playerSearch.value = "";
@@ -169,3 +176,4 @@ const clearForm = () => {
 
 getStandings();
 getScores();
+getHeadlines();
