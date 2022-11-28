@@ -7,6 +7,7 @@ let teamId = params.get("id");
 let teamInfo = document.querySelector(".team-info");
 let rosterTableBody = document.querySelector(".roster-table__body");
 const teamNews = document.querySelector(".team-news");
+
 let teamContent = document.querySelector("#content");
 
 
