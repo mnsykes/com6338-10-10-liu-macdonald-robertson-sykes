@@ -149,29 +149,3 @@ const clearForm = () => {
 
 getTeam(teamName);
 getNews(teamNickname);
-
-// fetch(`https://api-nba-v1.p.rapidapi.com/players/?team=${teamId}&season=2022`, options)
-// 	.then((response) => response.json())
-// 	.then((roster) => {
-// 		roster.response.map((r) => {
-// 			let rosterTableRow = document.createElement("tr");
-// 			let playerId = r.id;
-// 			console.log(r);
-// 			if (r.nba.start > 0) {
-// 				rosterTableRow.innerHTML = `
-// 					<td>${r.leagues.standard.jersey}</td>
-// 					<td>
-// 						<a href="player.html?id=${playerId}">${r.firstname} ${r.lastname}</a>
-// 					</td>
-// 					<td>${r.leagues.standard.pos}</td>
-// 					<td>${r.height.feets}' ${r.height.inches}"</td>
-// 					<td>${r.weight.pounds}lbs</td>
-// 					<td>${r.birth.date}</td>
-// 					<td>${r.nba.pro}</td>
-// 					<td>${r.college}</td>
-// 				`;
-// 				rosterTableBody.appendChild(rosterTableRow);
-// 			}
-// 		});
-// 	})
-// 	.catch((err) => console.error(err));
