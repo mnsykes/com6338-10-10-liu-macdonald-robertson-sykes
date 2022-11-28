@@ -27,13 +27,11 @@
 							</a>
 						</div>
 						<div class="nav__links">
-
-							<a href="index.html" class="nav__link nav__link_nav">Home</a>
+							<a href="team.html" class="nav__link nav__link_nav">Teams</a>
 							<a href="allplayers.html" class="nav__link nav__link_nav">Players</a>
 						</div>
-				
 						<form action="" class="search-form">
-
+							<input type="text" class="team-search" placeholder="team name" />
 							<button type="submit" class="search-btn">SUBMIT</button>
 						</form>
 					</div>
@@ -43,23 +41,37 @@
 			<!-- END HEADER -->
 			<main class="main__wrapper">
 				<section id="content">
-					<h1 class="subheading">Team Info</h1>
 					<div class="team-info"></div>
 					<h2>Team Roster</h2>
-					<table class="roster-table">
-						<tbody class="roster-table__body">
-							<th class="text-left">#</th>
-							<th class="text-left">NAME</th>
-							<th class="text-left">POSITION</th>
-							<th class="text-left">HEIGHT</th>
-							<th class="text-left">WEIGHT</th>
-							<th class="text-left">D.O.B.</th>
-							<th class="text-left">YEARS PRO</th>
-							<th class="text-left">COLLEGE</th>
-						</tbody>
-					</table>
+					<div class="scroll-table">
+						<table class="roster-table">
+							<thead>
+								<th class="freeze-col">Player</th>
+								<th>NUMBER</th>
+								<th>TEAM</th>
+								<th>POSITION</th>
+								<th>HEIGHT</th>
+								<th>WEIGHT</th>
+								<th>D.O.B.</th>
+								<th>AGE</th>
+								<th>PPG</th>
+								<th>RPG</th>
+								<th>APG</th>
+								<th>BPG</th>
+								<th>TOPG</th>
+								<th>FG%</th>
+								<th>FT%</th>
+								<th>3PT%</th>
+							</thead>
+							<tbody class="roster-table__body"></tbody>
+						</table>
+					</div>
 				</section>
-				<section class="team-news"></section>
+				<!-- START HEADLINES -->
+				<div class="headlines">
+					<h2 class="section-headline">Team News</h2>
+				</div>
+				<!-- END HEADLINES -->
 			</main>
 			<footer class="footer">
 				<div class="footer__logo">

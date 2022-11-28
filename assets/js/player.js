@@ -10,6 +10,7 @@ const searchTableBody = document.querySelector(".search-table__body");
 const averagesTableBody = document.querySelector(".averages-table__body");
 const gameTableBody = document.querySelector(".game-table__body");
 const seasonAverages = document.querySelector(".season-averages");
+const careerAverages = document.querySelector(".career-averages");
 const searchForm = document.querySelector(".search-form");
 const playerSearch = document.querySelector(".player-search");
 const searchResults = document.querySelector(".search-results");
@@ -28,7 +29,6 @@ searchForm.onsubmit = async (e) => {
 	flgSearch = true;
 	let playerName = playerSearch.value.trim();
 	if (!playerName) return;
-	console.log(playerName);
 	clearForm();
 	location = `player.html?lname=${playerName}`;
 };
@@ -54,11 +54,11 @@ const getPlayer = async () => {
 		);
 		if (res.status !== 200) throw new Error("Player not found");
 		const player = await res.json();
+		console.log(player);
 		if (flgSearch) {
 			player.map((p) => {
 				seasonAverages.style.display = "none";
 				renderSearchResults(p);
-				// renderProfile(player);
 			});
 		} else {
 			searchResults.style.display = "none";
@@ -66,6 +66,23 @@ const getPlayer = async () => {
 		}
 	} catch (err) {
 		console.log(err.message);
+	}
+};
+
+const getTeam = async (teamName) => {
+	try {
+		const res = await fetch(`https://nba-player-individual-stats.p.rapidapi.com/teams`, options);
+		if (res.status !== 200) throw new Error("Team not found");
+		const teams = await res.json();
+
+		for (let t of teams) {
+			if (teamName === t.name) {
+				teamId = t.id;
+				teamLogo = t.teamLogoUrl;
+			}
+		}
+	} catch (err) {
+		console.log(err.messge);
 	}
 };
 
@@ -111,21 +128,70 @@ const renderProfile = ({
 	id,
 	team,
 	dateOfBirth,
-	headShotUrl
+	headShotUrl,
+	careerBlocks,
+	careerPercentageFieldGoal,
+	careerPercentageFreethrow,
+	careerPercentageThree,
+	careerPoints,
+	careerRebounds,
+	careerTurnovers,
+	carrerAssists
 }) => {
 	let playerInfo = document.createElement("div");
+
 	playerInfo.className = "player-info";
 	playerInfo.innerHTML = `
-    <img src="${headShotUrl}" alt="${firstName} ${lastName}">
+        <img src="${headShotUrl}" alt="${firstName} ${lastName}">
         <h1 class="heading">${jerseyNumber} ${firstName} ${lastName}</h1>
-        <h2 class="subheading">${team}</h2>
-        <p><b>Position:</b> ${position}</p>
-        <p><b>Age:</b> ${age}</p>
-        <p><b>Date of Birth:</b> ${dateOfBirth}</p>
-        <p><b>Height:</b> ${height}</p>
-        <p><b>Weight:</b> ${weight}</p>
+        <a href="team.html?tname=${team}"><h2 class="subheading">${team}</h2></a>
+        <p class="body-text">Position:</b> ${position}</p>
+        <p class="body-text">Age:</b> ${age}</p>
+        <p class="body-text">Date of Birth:</b> ${dateOfBirth}</p>
+        <p class="body-text">Height:</b> ${height}</p>
+        <p class="body-text">Weight:</b> ${weight}</p>
     `;
 	playerContent.appendChild(playerInfo);
+
+	let careerAverageRow = document.createElement("tr");
+	careerAverageRow.innerHTML = `
+			    <td class="freeze-col body-text">
+                    Career Averages
+			    </td>
+			    <td class="body-text">
+			    </td>
+			    <td class="body-text">
+			    </td>
+                <td class="body-text">
+                </td>
+			    <td class="body-text">
+			    </td>
+			    <td class="body-text">
+			        ${careerPercentageFieldGoal}
+			    </td>
+                <td class="body-text">
+                    ${careerPercentageFreethrow}
+                </td>
+			    <td class="body-text">
+			        ${careerPercentageThree}
+			    </td>
+			    <td class="body-text">
+			        ${careerTurnovers}
+			    </td>
+                <td class="body-text">
+                    ${careerBlocks}
+                </td>
+			    <td class="body-text">
+			        ${careerRebounds}
+			    </td>
+			    <td class="body-text">
+			        ${carrerAssists}
+			    </td>
+			    <td class="body-text">
+			        ${careerPoints}
+			    </td>
+		`;
+	careerAverages.appendChild(careerAverageRow);
 
 	getStats();
 };
@@ -163,43 +229,43 @@ const renderStats = async ({
 }) => {
 	let averagesRow = document.createElement("tr");
 	averagesRow.innerHTML = `
-			    <td class="freeze-col">
+			    <td class="freeze-col body-text">
 			        ${season}
 			    </td>
-			    <td>
+			    <td class="body-text">
 			        ${team}
 			    </td>
-			    <td>
+			    <td class="body-text">
 			        ${gamesPlayed}
 			    </td>
-                <td>
+                <td class="body-text">
                     ${gamesStarted}
                 </td>
-			    <td>
+			    <td class="body-text">
 			        ${minsPerGame}
 			    </td>
-			    <td>
+			    <td class="body-text">
 			        ${percentageFieldGoal}
 			    </td>
-                <td>
+                <td class="body-text">
                     ${percentageFreeThrow}
                 </td>
-			    <td>
+			    <td class="body-text">
 			        ${percentageThree}
 			    </td>
-			    <td>
+			    <td class="body-text">
 			        ${turnoversPerGame}
 			    </td>
-                <td>
+                <td class="body-text">
                     ${blocksPerGame}
                 </td>
-			    <td>
+			    <td class="body-text">
 			        ${reboundsPerGame}
 			    </td>
-			    <td>
+			    <td class="body-text">
 			        ${assistsPerGame}
 			    </td>
-			    <td>
+			    <td class="body-text">
 			        ${pointsPerGame}
 			    </td>
 		`;
