@@ -46,7 +46,7 @@ const getStandings = async () => {
 		);
 		if (res.status !== 200) throw new Error("Error");
 		const data = await res.json();
-
+		console.log(data.response);
 		data.response.sort((a, b) => a.conference.rank - b.conference.rank);
 		data.response.map((team) => {
 			renderStandings(team);
@@ -66,7 +66,6 @@ const getScores = async () => {
 		const data = await res.json();
 
 		data.response.map((score) => {
-			console.log(score);
 			renderScores(score);
 		});
 	} catch (err) {
@@ -89,22 +88,19 @@ const renderStandings = async ({
 		winLoss = "L";
 	}
 	standsRow.innerHTML = `
-                <td>${conference.rank}.</td>
-                <td>
-                    <a href="team.html?tname=${name}">
-                        <img src=${logo} style="height: 20px; width: 20px;">
-                    </a>
-                </td>
-                <td><a href="team.html?tname=${name}&nickname=">${name}</a></td>
-                <td>${win.total}</td>
-                <td>${loss.total}</td>
-                <td>${win.percentage}%</td>
-                <td>${conference.win}-${conference.loss}</td>
-                <td>${win.home}-${loss.home}</td>
-                <td>${win.away}-${loss.away}</td>
-                <td>${win.lastTen}-${loss.lastTen}</td>
-                <td>${winLoss}${streak}</td>
-			`;
+		<td class="freeze-col">${conference.rank}.<a href="team.html?tname=${name}">
+			<img src=${logo} style="height: 20px; width: 20px;">
+		</a><a href="team.html?tname=${name}&nickname=">${name}</a>
+		</td>
+		<td>${win.total}</td>
+		<td>${loss.total}</td>
+		<td>${win.percentage}%</td>
+		<td>${conference.win}-${conference.loss}</td>
+		<td>${win.home}-${loss.home}</td>
+		<td>${win.away}-${loss.away}</td>
+		<td>${win.lastTen}-${loss.lastTen}</td>
+		<td>${winLoss}${streak}</td>
+		`;
 	if (conference.name == "east") {
 		standsE.appendChild(standsRow);
 	} else if (conference.name == "west") {
@@ -133,7 +129,7 @@ const renderScores = async ({ teams: { visitors, home }, scores }) => {
 							${visitors.name}
 						</a>
 					</div>
-                    <div class="text-center"> AT </div>
+                    <div class="game-block__at text-center"> AT </div>
 					<div class="game-block__team text-center">
 						<a href="team.html?tname=${home.name}">
 							${home.name}
@@ -160,6 +156,7 @@ const getHeadlines = async () => {
 
 		for (let i = 0; i < 10; i++) {
 			let newStory = document.createElement("div");
+			newStory.className = "headline";
 			newStory.innerHTML = `
 				<a href="${headline[i].url}" target="_blank">${headline[i].title}</a>
 			`;
