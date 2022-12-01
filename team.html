@@ -12,56 +12,59 @@
 		/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/team.css" />
 		<title>Teams Page</title>
 	</head>
 	<body>
 		<div id="grid">
 			<!-- START HEADER -->
 			<header class="header">
-				<header class="header">
-					<!-- START NAV -->
-					<div class="nav">
-						<div class="nav__logo">
-							<a href="index.html">
-								<img src="assets/images/cryingjordan.png" />
-							</a>
-						</div>
-						<div class="nav__links">
-							<a href="team.html" class="nav__link nav__link_nav">Teams</a>
-							<a href="allplayers.html" class="nav__link nav__link_nav">Players</a>
-						</div>
-						<form action="" class="search-form">
-							<input type="text" class="team-search" placeholder="team name" />
-							<button type="submit" class="search-btn">SUBMIT</button>
-						</form>
+				<!-- START NAV -->
+				<div class="nav">
+					<div class="nav__logo">
+						<a href="index.html">
+							<img src="assets/images/cryingjordan.png" alt="Crying Jordan" />
+						</a>
 					</div>
-					<!-- END NAV -->
-				</header>
+					<div class="nav__links">
+						<a href="team.html" class="nav__link nav__link_nav">Teams</a>
+						<a href="allplayers.html" class="nav__link nav__link_nav">Players</a>
+					</div>
+					<form class="search-form">
+						<input type="text" class="team-search" placeholder="team name" />
+						<button type="submit" class="search-btn">SUBMIT</button>
+					</form>
+				</div>
+				<!-- END NAV -->
 			</header>
 			<!-- END HEADER -->
 			<main class="main__wrapper">
 				<section id="content">
+					<div class="eastTeamEl"></div>
+					<div class="westTeamEl"></div>
 					<div class="team-info"></div>
-					<h2>Team Roster</h2>
+
 					<div class="scroll-table">
-						<table class="roster-table">
+						<h2 class="section-headline">Team Roster</h2>
+						<table class="table roster-table">
 							<thead>
-								<th class="freeze-col">Player</th>
-								<th>NUMBER</th>
-								<th>TEAM</th>
-								<th>POSITION</th>
-								<th>HEIGHT</th>
-								<th>WEIGHT</th>
-								<th>D.O.B.</th>
-								<th>AGE</th>
-								<th>PPG</th>
-								<th>RPG</th>
-								<th>APG</th>
-								<th>BPG</th>
-								<th>TOPG</th>
-								<th>FG%</th>
-								<th>FT%</th>
-								<th>3PT%</th>
+								<tr>
+									<th class="freeze-col">PLAYER</th>
+									<th>NUMBER</th>
+									<th>POSITION</th>
+									<th>HEIGHT</th>
+									<th>WEIGHT</th>
+									<th>D.O.B.</th>
+									<th>AGE</th>
+									<th>PPG</th>
+									<th>RPG</th>
+									<th>APG</th>
+									<th>BPG</th>
+									<th>TOPG</th>
+									<th>FG%</th>
+									<th>FT%</th>
+									<th>3PT%</th>
+								</tr>
 							</thead>
 							<tbody class="roster-table__body"></tbody>
 						</table>
@@ -75,7 +78,7 @@
 			</main>
 			<footer class="footer">
 				<div class="footer__logo">
-					<img src="assets/images/cryingjordan.png" style="width: 5%" />
+					<img src="assets/images/cryingjordan.png" alt="Crying Jordan" style="width: 5%" />
 				</div>
 				<div class="nav__links">
 					<a href="index.html" class="nav__link nav__link_nav">Home</a>
@@ -83,6 +86,6 @@
 				</div>
 			</footer>
 		</div>
+		<script src="assets/js/team.js"></script>
 	</body>
-	<script src="assets/js/team.js"></script>
 </html>

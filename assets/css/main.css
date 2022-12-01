@@ -2,10 +2,3 @@
 @import "variables.css";
 @import "components.css";
 @import "global.css";
-
-/* Temporary styles */
-* {
-	font-family: "Roboto Mono", "Courier New", Courier, monospace;
-}
-
-/* End Temporary styles */

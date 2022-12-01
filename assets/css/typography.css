@@ -1,28 +1,41 @@
 .heading {
 	font-size: var(--xxl);
 	text-transform: uppercase;
+	color: var(--primary_gray);
+	font-family: "Inter", sans-serif;
 }
 
 .subheading {
 	font-size: var(--xl);
-	color: var(--primary_red);
+	color: var(--primary_gray);
 	text-transform: uppercase;
 }
 
 .section-headline {
 	font-size: var(--lg);
-	color: var(--primary_red);
+	color: var(--primary_gray);
 	text-transform: uppercase;
 }
 
 .body-text {
 	font-size: var(--sm);
-	color: var(--primary_black);
+	color: var(--primary_gray);
 }
 
 a {
 	font-size: var(--sm);
 	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+th,
+td {
+	font-size: var(--sm);
+	text-align: left;
+	margin-bottom: 0.5rem;
 }
 
 .text-center {
@@ -35,4 +48,8 @@ a {
 
 .text-right {
 	text-align: right;
+}
+
+.text-bold {
+	font-weight: 700;
 }

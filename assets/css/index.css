@@ -14,65 +14,64 @@
 	text-align: center;
 }
 
-.game-block__result {
-	margin-bottom: 25px;
-	display: grid;
-	grid-template-columns: repeat(7, 1fr);
-	border-top: 3px solid #333;
-	border-bottom: 3px solid #333;
+.heading,
+.subheading,
+.section-headline {
+	margin-bottom: 1.6rem;
 }
 
 .standings {
 	display: flex;
-	justify-content: space-around;
+	flex-direction: column;
+}
+
+.news-scores {
+	display: flex;
+	justify-content: space-between;
+}
+.box-scores,
+.standings-east,
+.standings-west {
+	margin-bottom: 5rem;
+}
+
+.game-block__result {
+	margin-right: 5rem;
+	height: 7.5rem;
+	border-top: 0.3rem solid #333;
+	border-bottom: 0.3rem solid #333;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 2.5rem;
 }
 
 .game-block__score {
-	border-left: 3px solid #333;
-	border-right: 3px solid #333;
-	font-size: 2.4rem;
+	height: 100%;
+	font-weight: bold;
+	border-left: 0.3rem solid #333;
+	border-right: 0.3rem solid #333;
+	font-size: var(--sm);
 	background: lightgray;
+	padding: 2.35rem;
 }
 
-.game-block__team {
-	font-size: 2.4rem;
+.game-block__at {
+	font-size: var(--sm);
+	font-weight: bold;
+	padding: 0 2rem;
 }
 
 .game-block__image {
-	height: 100%;
-	width: 100%;
+	padding: 0 2.35rem;
 }
 
 .game-block__image img {
 	margin: 0 auto;
-	width: 50px;
-	height: 50px;
+	width: 2.4rem;
+	height: 2.4rem;
 }
 
-/* .heading_text_home {
-	margin-top: 10vh;
-	margin-bottom: 35vh;
-}
-
-.body-text_home {
-	color: var(--primary_white);
-	font-size: var(--lg);
-}
-
-.heading_home {
-	margin-bottom: 25rem;
-}
-
-.subheading_home {
-	font-size: var(--xl);
-} */
-
-.header_home,
-.footer_home {
-	margin: 0;
-}
-
-#content {
-	max-width: 50vw;
-	margin: 0 auto;
+.headline {
+	margin-bottom: 1rem;
 }

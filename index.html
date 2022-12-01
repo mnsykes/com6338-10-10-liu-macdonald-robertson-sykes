@@ -23,14 +23,14 @@
 				<div class="nav">
 					<div class="nav__logo">
 						<a href="index.html">
-							<img src="assets/images/cryingjordan.png" />
+							<img src="assets/images/cryingjordan.png" alt="Crying Jordan" />
 						</a>
 					</div>
 					<div class="nav__links">
 						<a href="team.html" class="nav__link nav__link_nav">Teams</a>
 						<a href="allplayers.html" class="nav__link nav__link_nav">Players</a>
 					</div>
-					<form action="" class="search-form">
+					<form class="search-form">
 						<input type="text" class="player-search" placeholder="player last name" />
 						<button type="submit" class="search-btn">SUBMIT</button>
 					</form>
@@ -50,55 +50,57 @@
 					<!-- START EAST STANDINGS -->
 					<section class="standings-east">
 						<h3 class="section-headline">Eastern Conference</h3>
-						<table class="standE-table">
-							<tbody class="standE-table__body">
-								<tr>
-									<th></th>
-									<th></th>
-									<th></th>
-									<th>W</th>
-									<th>L</th>
-									<th>PCT</th>
-									<th>CONF</th>
-									<th>HOME</th>
-									<th>AWAY</th>
-									<th>L10</th>
-									<th>STRK</th>
-								</tr>
-							</tbody>
-						</table>
+						<div class="scroll-table">
+							<table class="table standE-table">
+								<thead>
+									<tr>
+										<th class="freeze-col"></th>
+										<th>W</th>
+										<th>L</th>
+										<th>PCT</th>
+										<th>CONF</th>
+										<th>HOME</th>
+										<th>AWAY</th>
+										<th>L10</th>
+										<th>STRK</th>
+									</tr>
+								</thead>
+								<tbody class="standE-table__body"></tbody>
+							</table>
+						</div>
 					</section>
 					<!-- END EAST STANDINGS -->
 
 					<!-- START WEST STANDINGS -->
 					<section class="standings-west">
 						<h3 class="section-headline">Western Conference</h3>
-						<table class="standW-table">
-							<tbody class="standW-table__body">
-								<tr>
-									<th></th>
-									<th></th>
-									<th></th>
-									<th>W</th>
-									<th>L</th>
-									<th>PCT</th>
-									<th>CONF</th>
-									<th>HOME</th>
-									<th>AWAY</th>
-									<th>L10</th>
-									<th>STRK</th>
-								</tr>
-							</tbody>
-						</table>
+						<div class="scroll-table">
+							<table class="table standW-table">
+								<thead>
+									<tr>
+										<th class="freeze-col"></th>
+										<th>W</th>
+										<th>L</th>
+										<th>PCT</th>
+										<th>CONF</th>
+										<th>HOME</th>
+										<th>AWAY</th>
+										<th>L10</th>
+										<th>STRK</th>
+									</tr>
+								</thead>
+								<tbody class="standW-table__body"></tbody>
+							</table>
+						</div>
 					</section>
 					<!-- END WEST STANDINGS -->
 				</section>
 				<!-- END STANDINGS -->
 
-				<div class="news-scores">
+				<section class="news-scores">
 					<!-- START BOX SCORES -->
 					<div class="box-scores">
-						<h2 class="subheading text-center">Scores</h2>
+						<h2 class="section-headline text-center">Scores</h2>
 						<div class="game-div"></div>
 					</div>
 					<!-- END BOX SCORES -->
@@ -108,11 +110,11 @@
 						<h2 class="section-headline">News From Around the League</h2>
 					</div>
 					<!-- END HEADLINES -->
-				</div>
+				</section>
 			</main>
 			<footer class="footer">
 				<div class="footer__logo">
-					<img src="assets/images/cryingjordan.png" style="width: 5%" />
+					<img src="assets/images/cryingjordan.png" alt="Crying Jordan" style="width: 5%" />
 				</div>
 				<div class="nav__links">
 					<a href="team.html" class="nav__link nav__link_nav">Teams</a>
