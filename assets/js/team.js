@@ -2,14 +2,15 @@
 const params = new URLSearchParams(window.location.search);
 const searchForm = document.querySelector(".search-form");
 const teamSearch = document.querySelector(".team-search");
-let teamName = params.get("tname");
+const eastTeamEl = document.querySelector(".eastTeamEl");
+const westTeamEl = document.querySelector(".westTeamEl");
+const teamName = params.get("tname");
 const teamId = params.get("id");
 const teamInfo = document.querySelector(".team-info");
+const scrollTable = document.querySelector(".scroll-table");
 const rosterTableBody = document.querySelector(".roster-table__body");
 const headlines = document.querySelector(".headlines");
-let string = teamName;
-let splitString = string.split(" ");
-let teamNickname = splitString[splitString.length - 1];
+let flgSearch = false;
 
 // pass teamId variable to url to fetch the team
 const options = {
@@ -28,24 +29,51 @@ const newsOptions = {
 	}
 };
 
+if (teamName !== null || teamId !== null) flgSearch = true;
+
+if (!flgSearch) {
+	teamInfo.style.display = "none";
+	scrollTable.style.display = "none";
+	headlines.style.display = "none";
+}
+
 searchForm.onsubmit = async (e) => {
 	e.preventDefault();
 	flgSearch = true;
-	let teamName = teamSearch.value.trim();
-	if (!teamName) return;
+	let teamSearchName = teamSearch.value.trim();
+	if (!teamSearchName) return;
 	clearForm();
-	location = `team.html?tname=${teamName}`;
+	location = `team.html?tname=${teamSearchName}`;
 };
 
-const getTeam = async (query) => {
-	console.log(query);
+const getTeamNickname = (strName) => {
+	let string = strName;
+	let splitString = string.split(" ");
+	let teamNickname = splitString[splitString.length - 1];
+
+	return teamNickname;
+};
+
+const getAllTeams = async () => {
+	try {
+		const res = await fetch(`https://nba-player-individual-stats.p.rapidapi.com/teams`, options);
+		if (res.status !== 200) throw new Error("Teams not found");
+		const teams = await res.json();
+
+		teams.sort((a, b) => a.id - b.id);
+		teams.map((t) => renderAllTeams(t));
+	} catch (err) {
+		console.log(err.message);
+	}
+};
+
+const getTeam = async (strTeamName) => {
 	try {
 		const res = await fetch(`https://nba-player-individual-stats.p.rapidapi.com/teams`, options);
 		if (res.status !== 200) throw new Error("Team not found");
 		const team = await res.json();
 		team.map((t) => {
-			if (query == t.id || query == t.name) {
-				console.log(t);
+			if (strTeamName.toLowerCase() == t.name.toLowerCase()) {
 				renderTeam(t);
 				getRoster(t);
 			}
@@ -73,10 +101,24 @@ const renderTeam = ({ id, name, conference, record, teamLogoUrl }) => {
 	teamInfo.innerHTML = `
 		<img src="${teamLogoUrl}" alt="${name} logo">
 		<h1 class="subheading">${name}</h1>
-		<p>Overall record: ${record}</p>
-		<p>${conference} Conference</p>
+		<p class="body-text">Overall record: ${record}</p>
+		<p class="body-text">${conference} Conference</p>
 		
 	`;
+};
+
+const renderAllTeams = ({ id, name, conference, record, teamLogoUrl }) => {
+	let teamEl = document.createElement("div");
+	teamEl.innerHTML = `
+	<a href="team.html?tname=${name}">
+		<img class="team-logo" src="${teamLogoUrl}" alt="${name}">
+	</a>
+	`;
+	if (conference === "Eastern") {
+		eastTeamEl.appendChild(teamEl);
+	} else {
+		westTeamEl.appendChild(teamEl);
+	}
 };
 
 const renderRoster = ({
@@ -96,16 +138,14 @@ const renderRoster = ({
 	jerseyNumber,
 	lastName,
 	position,
-	team,
 	weight
 }) => {
+	// let pos = position.split(/\s/).reduce((response, word) => (response += word.slice(0, 1)), "");
 	let rosterRow = document.createElement("tr");
+
 	rosterRow.innerHTML = `
-		<td class="freeze-col" data-sort="name">
-			<a href="player.html?id=${id}">${firstName} ${lastName}</a>
-		<td>
+		<td class="freeze-col"><a href="player.html?id=${id}">${firstName} ${lastName}</a></td>
 		<td>${jerseyNumber}</td>
-		<td>${team}</td>
 		<td>${position}</td>
 		<td>${height}</td>
 		<td>${weight}</td>
@@ -119,7 +159,6 @@ const renderRoster = ({
 		<td>${careerPercentageFieldGoal}</td>
 		<td>${careerPercentageFreethrow}</td>
 		<td>${careerPercentageThree}</td>
-		
 	`;
 	rosterTableBody.appendChild(rosterRow);
 };
@@ -147,5 +186,8 @@ const clearForm = () => {
 	teamSearch.value = "";
 };
 
-getTeam(teamName);
-getNews(teamNickname);
+if (flgSearch) getTeam(teamName);
+
+getAllTeams();
+
+getNews(getTeamNickname(teamName));

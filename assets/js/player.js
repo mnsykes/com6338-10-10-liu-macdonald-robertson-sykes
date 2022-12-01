@@ -54,11 +54,11 @@ const getPlayer = async () => {
 		);
 		if (res.status !== 200) throw new Error("Player not found");
 		const player = await res.json();
-		console.log(player);
+
 		if (flgSearch) {
 			player.map((p) => {
 				seasonAverages.style.display = "none";
-				renderSearchResults(p);
+				if (p.team !== null && p.headShotUrl !== null) renderSearchResults(p);
 			});
 		} else {
 			searchResults.style.display = "none";
@@ -155,39 +155,39 @@ const renderProfile = ({
 
 	let careerAverageRow = document.createElement("tr");
 	careerAverageRow.innerHTML = `
-			    <td class="freeze-col body-text">
+			    <td class="freeze-col body-text text-bold">
                     Career Averages
 			    </td>
-			    <td class="body-text">
+			    <td>
 			    </td>
-			    <td class="body-text">
+			    <td>
 			    </td>
-                <td class="body-text">
+                <td>
                 </td>
-			    <td class="body-text">
+			    <td>
 			    </td>
-			    <td class="body-text">
+			    <td class="body-text text-bold">
 			        ${careerPercentageFieldGoal}
 			    </td>
-                <td class="body-text">
+                <td class="body-text text-bold">
                     ${careerPercentageFreethrow}
                 </td>
-			    <td class="body-text">
+			    <td class="body-text text-bold">
 			        ${careerPercentageThree}
 			    </td>
-			    <td class="body-text">
+			    <td class="body-text text-bold">
 			        ${careerTurnovers}
 			    </td>
-                <td class="body-text">
+                <td class="body-text text-bold">
                     ${careerBlocks}
                 </td>
-			    <td class="body-text">
+			    <td class="body-text text-bold">
 			        ${careerRebounds}
 			    </td>
-			    <td class="body-text">
+			    <td class="body-text text-bold">
 			        ${carrerAssists}
 			    </td>
-			    <td class="body-text">
+			    <td class="body-text text-bold">
 			        ${careerPoints}
 			    </td>
 		`;

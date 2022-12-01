@@ -12,35 +12,31 @@
 		/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/allplayers.css" />
 		<title>Document</title>
 	</head>
 	<body>
 		<div id="grid">
 			<!-- START HEADER -->
 			<header class="header">
-				<header class="header">
-					<!-- START NAV -->
-					<div class="nav">
-						<div class="nav__logo">
-							<a href="index.html">
-								<img src="assets/images/cryingjordan.png" />
-							</a>
-						</div>
-						<div class="nav__links">
-
-							<a href="index.html" class="nav__link nav__link_nav">Home</a>
-							<a href="team.html" class="nav__link nav__link_nav">Teams</a>			
-						</div>
-
-						<form action="" class="search-form">
-							<input type="text" class="player-search" placeholder="player last name" />
-							<button type="submit" class="search-btn">SUBMIT</button>
-						</form>
+				<!-- START NAV -->
+				<div class="nav">
+					<div class="nav__logo">
+						<a href="index.html">
+							<img src="assets/images/cryingjordan.png" alt="Crying Jordan" />
+						</a>
 					</div>
-					<!-- END NAV -->
+					<div class="nav__links">
+						<a href="index.html" class="nav__link nav__link_nav">Home</a>
+						<a href="team.html" class="nav__link nav__link_nav">Teams</a>
 					</div>
-					<!-- END NAV -->
-				</header>
+
+					<form class="search-form">
+						<input type="text" class="player-search" placeholder="player last name" />
+						<button type="submit" class="search-btn">SUBMIT</button>
+					</form>
+				</div>
+				<!-- END NAV -->
 			</header>
 			<!-- END HEADER -->
 
@@ -48,8 +44,7 @@
 			<main class="main__wrapper">
 				<section id="content">
 					<div class="scroll-table">
-
-						<table class="player-table">
+						<table class="table player-table">
 							<thead>
 								<tr>
 									<th class="freeze-col">Player</th>
@@ -73,6 +68,7 @@
 							<tbody class="player-table__body"></tbody>
 						</table>
 					</div>
+					<div class="page-numbers"></div>
 				</section>
 			</main>
 			<!-- END MAIN -->
@@ -80,7 +76,7 @@
 			<!-- START FOOTER -->
 			<footer class="footer">
 				<div class="footer__logo">
-					<img src="assets/images/cryingjordan.png" style="width: 5%" />
+					<img src="assets/images/cryingjordan.png" alt="Crying Jordan" style="width: 5%" />
 				</div>
 				<div class="nav__links">
 					<a href="index.html" class="nav__link nav__link_nav">Home</a>
