@@ -1,0 +1,14 @@
+.westTeamEl,
+.eastTeamEl {
+	display: flex;
+	flex: wrap;
+	align-items: center;
+	justify-content: center;
+	padding: 1rem;
+}
+
+.team-logo {
+	height: 3rem;
+	width: 3rem;
+	margin: 0 0.5rem;
+}
