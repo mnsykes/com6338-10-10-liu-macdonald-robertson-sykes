@@ -1,16 +1,24 @@
 // get value of id from query string and store in variable
 const params = new URLSearchParams(window.location.search);
-const searchForm = document.querySelector(".search-form");
-const teamSearch = document.querySelector(".team-search");
-const eastTeamEl = document.querySelector(".eastTeamEl");
-const westTeamEl = document.querySelector(".westTeamEl");
 const teamName = params.get("tname");
 const teamId = params.get("id");
+
+// variables for tables
+const eastTeamEl = document.querySelector(".eastTeamEl");
+const westTeamEl = document.querySelector(".westTeamEl");
 const teamInfo = document.querySelector(".team-info");
+const teamRoster = document.querySelector(".team-roster");
 const scrollTable = document.querySelector(".scroll-table");
 const rosterTableBody = document.querySelector(".roster-table__body");
-const headlines = document.querySelector(".headlines");
+const logos = document.querySelector(".logos");
+
+// variables for search bar
+const searchForm = document.querySelector(".search-form");
+const teamSearch = document.querySelector(".team-search");
 let flgSearch = false;
+
+// variables for news stories
+const headlines = document.querySelector(".headlines");
 
 // pass teamId variable to url to fetch the team
 const options = {
@@ -33,8 +41,10 @@ if (teamName !== null || teamId !== null) flgSearch = true;
 
 if (!flgSearch) {
 	teamInfo.style.display = "none";
+	teamRoster.style.display = "none";
 	scrollTable.style.display = "none";
 	headlines.style.display = "none";
+	logos.style.height = "100vh";
 }
 
 searchForm.onsubmit = async (e) => {
@@ -61,7 +71,9 @@ const getAllTeams = async () => {
 		const teams = await res.json();
 
 		teams.sort((a, b) => a.id - b.id);
-		teams.map((t) => renderAllTeams(t));
+		teams.map((t) => {
+			if (!flgSearch) renderAllTeams(t);
+		});
 	} catch (err) {
 		console.log(err.message);
 	}
@@ -100,9 +112,9 @@ const getRoster = async ({ name }) => {
 const renderTeam = ({ id, name, conference, record, teamLogoUrl }) => {
 	teamInfo.innerHTML = `
 		<img src="${teamLogoUrl}" alt="${name} logo">
-		<h1 class="subheading">${name}</h1>
-		<p class="body-text">Overall record: ${record}</p>
-		<p class="body-text">${conference} Conference</p>
+		<h1 class="heading">${name}</h1>
+		<p class="section-headline">Overall record: ${record}</p>
+		<p class="section-headline">${conference} Conference</p>
 		
 	`;
 };

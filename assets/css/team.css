@@ -7,8 +7,17 @@
 	padding: 1rem;
 }
 
+.team-info,
+.team-roster {
+	margin-bottom: 3.5rem;
+}
+
 .team-logo {
 	height: 3rem;
 	width: 3rem;
 	margin: 0 0.5rem;
+}
+
+.team-info img {
+	width: 100%;
 }

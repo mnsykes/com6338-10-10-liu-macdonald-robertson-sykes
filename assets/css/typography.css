@@ -9,12 +9,14 @@
 	font-size: var(--xl);
 	color: var(--primary_gray);
 	text-transform: uppercase;
+	margin-bottom: 1rem;
 }
 
 .section-headline {
 	font-size: var(--lg);
 	color: var(--primary_gray);
 	text-transform: uppercase;
+	margin-bottom: 0.5rem;
 }
 
 .body-text {

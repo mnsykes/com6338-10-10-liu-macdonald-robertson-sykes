@@ -59,6 +59,7 @@ EX. JUMBOTRON FOR SHOP PAGE
 
 .scroll-table {
 	overflow-x: auto;
+	padding-bottom: 1.5rem;
 }
 
 .table {
@@ -70,12 +71,14 @@ EX. JUMBOTRON FOR SHOP PAGE
 	position: sticky;
 	left: 0;
 	background-color: white;
+	width: 100%;
 }
 
 th,
 td {
 	text-align: left;
 	padding-right: 2rem;
+	white-space: nowrap;
 }
 
 /* END TABLES */

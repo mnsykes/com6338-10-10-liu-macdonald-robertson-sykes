@@ -3,7 +3,6 @@ const params = new URLSearchParams(window.location.search);
 let playerId = params.get("id");
 let season = params.get("season");
 let playerName = params.get("lname");
-let flgSearch = false;
 
 const playerContent = document.querySelector("#content");
 const searchTableBody = document.querySelector(".search-table__body");
@@ -11,10 +10,12 @@ const averagesTableBody = document.querySelector(".averages-table__body");
 const gameTableBody = document.querySelector(".game-table__body");
 const seasonAverages = document.querySelector(".season-averages");
 const careerAverages = document.querySelector(".career-averages");
+
+// variables for search bar
 const searchForm = document.querySelector(".search-form");
 const playerSearch = document.querySelector(".player-search");
 const searchResults = document.querySelector(".search-results");
-const playerSearchForm = document.querySelector(".player-search");
+let flgSearch = false;
 
 const options = {
 	method: "GET",

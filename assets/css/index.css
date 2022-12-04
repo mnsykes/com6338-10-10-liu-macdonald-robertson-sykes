@@ -5,13 +5,7 @@
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-end;
 	padding-bottom: 3.5rem;
-	align-items: center;
-	text-align: center;
 }
 
 .heading,
@@ -36,10 +30,11 @@
 }
 
 .game-block__result {
+	width: 100%;
 	margin-right: 5rem;
 	height: 7.5rem;
-	border-top: 0.3rem solid #333;
-	border-bottom: 0.3rem solid #333;
+	border-top: 0.3rem solid var(--primary_gray);
+	border-bottom: 0.3rem solid var(--primary_gray);
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -49,8 +44,8 @@
 .game-block__score {
 	height: 100%;
 	font-weight: bold;
-	border-left: 0.3rem solid #333;
-	border-right: 0.3rem solid #333;
+	border-left: 0.3rem solid var(--primary_gray);
+	border-right: 0.3rem solid var(--primary_gray);
 	font-size: var(--sm);
 	background: lightgray;
 	padding: 2.35rem;
