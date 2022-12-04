@@ -1,17 +1,27 @@
-let nbaEl = document.querySelector("#nba");
+// variables for search bar
 const searchForm = document.querySelector(".search-form");
 const playerSearch = document.querySelector(".player-search");
-let main = document.querySelector(".main__wrapper");
-let LocalDate = new Date();
-let Year = LocalDate.getFullYear();
-let Month = LocalDate.getMonth() + 1;
-let Day = LocalDate.getDate();
 
-let standsE = document.querySelector(".standE-table__body");
-let standsW = document.querySelector(".standW-table__body");
-let scoresTableBody = document.querySelector(".scores-table__body");
-let scoresTableFooter = document.querySelector(".scores-table__footer");
-let gameDiv = document.querySelector(".game-div");
+// date variables
+const localDate = new Date();
+const year = localDate.getFullYear();
+const yesterday = new Date(localDate);
+yesterday.setDate(yesterday.getDate() - 1);
+const month = String(yesterday.getMonth() + 1).padStart(2, "0");
+const day = String(yesterday.getDate()).padStart(2, "0");
+
+// variables for standings
+const standsE = document.querySelector(".standE-table__body");
+const standsW = document.querySelector(".standW-table__body");
+
+// variables for box scores
+const scoresTableBody = document.querySelector(".scores-table__body");
+const scoresTableFooter = document.querySelector(".scores-table__footer");
+const gameDiv = document.querySelector(".game-div");
+let boxScoreMsg = document.querySelector(".box-score__msg");
+let headlinesMsg = document.querySelector(".headlines-msg");
+
+// variables for news stories
 const headlines = document.querySelector(".headlines");
 
 const options = {
@@ -41,12 +51,12 @@ searchForm.onsubmit = async (e) => {
 const getStandings = async () => {
 	try {
 		const res = await fetch(
-			`https://api-nba-v1.p.rapidapi.com/standings?league=standard&season=${Year}`,
+			`https://api-nba-v1.p.rapidapi.com/standings?league=standard&season=${year}`,
 			options
 		);
 		if (res.status !== 200) throw new Error("Error");
 		const data = await res.json();
-		console.log(data.response);
+
 		data.response.sort((a, b) => a.conference.rank - b.conference.rank);
 		data.response.map((team) => {
 			renderStandings(team);
@@ -59,17 +69,18 @@ const getStandings = async () => {
 const getScores = async () => {
 	try {
 		const res = await fetch(
-			`https://api-nba-v1.p.rapidapi.com/games?date=${Year}-${Month}-${Day}`,
+			`https://api-nba-v1.p.rapidapi.com/games?date=${year}-${month}-${day}`,
 			options
 		);
 		if (res.status !== 200) throw new Error("Error");
 		const data = await res.json();
 
+		if (data.response.length === 0) throw new Error(`No games played on ${month}/${day}/${year}`);
 		data.response.map((score) => {
 			renderScores(score);
 		});
 	} catch (err) {
-		console.log(err);
+		boxScoreMsg.innerHTML = err.message;
 	}
 };
 
@@ -78,18 +89,19 @@ const renderStandings = async ({
 	conference,
 	win,
 	loss,
-	team: { id, name, logo, winStreak }
+	team: { id, name, logo, winStreak, code }
 }) => {
 	let standsRow = document.createElement("tr");
 	let winLoss = "";
+
 	if (winStreak) {
 		winLoss = "W";
 	} else {
 		winLoss = "L";
 	}
 	standsRow.innerHTML = `
-		<td class="freeze-col">${conference.rank}.<a href="team.html?tname=${name}">
-			<img src=${logo} style="height: 20px; width: 20px;">
+		<td class="freeze-col "><a href="team.html?tname=${name}">
+			<img src=${logo} style="height: 16px; width: 16px;">
 		</a><a href="team.html?tname=${name}&nickname=">${name}</a>
 		</td>
 		<td>${win.total}</td>
@@ -100,7 +112,8 @@ const renderStandings = async ({
 		<td>${win.away}-${loss.away}</td>
 		<td>${win.lastTen}-${loss.lastTen}</td>
 		<td>${winLoss}${streak}</td>
-		`;
+	`;
+
 	if (conference.name == "east") {
 		standsE.appendChild(standsRow);
 	} else if (conference.name == "west") {
@@ -115,43 +128,44 @@ const renderScores = async ({ teams: { visitors, home }, scores }) => {
 	let homeTeamId = home.id;
 
 	gameBlock.innerHTML = `
-                <div class="game-block__result text-center">
-                    <div class="game-block__score">
-                    	${scores.visitors.points}
-                    </div>
-					<div class="game-block__image">
-						<a href="team.html?tname=${visitors.name}">
-							<img src="${visitors.logo}">
-						</a>
-					</div>
-					<div class="game-block__team text-center">
-						<a href="team.html?tname=${visitors.name}">
-							${visitors.name}
-						</a>
-					</div>
-                    <div class="game-block__at text-center"> AT </div>
-					<div class="game-block__team text-center">
-						<a href="team.html?tname=${home.name}">
-							${home.name}
-						</a>
-					</div>
-					<div class="game-block__image">
-						<a href="team.html?tname=${home.name}">
-							<img src="${home.logo}">
-						</a>
-					</div>
-                    <div class="game-block__score text-center">
-                    	${scores.home.points}
-                    </div>
-                </div>
-            `;
+		<div class="game-block__result text-center">
+			<div class="game-block__score">
+				${scores.visitors.points}
+			</div>
+			<div class="game-block__image">
+				<a href="team.html?tname=${visitors.name}">
+					<img src="${visitors.logo}">
+				</a>
+			</div>
+			<div class="game-block__team text-center">
+				<a href="team.html?tname=${visitors.name}">
+					${visitors.name}
+				</a>
+			</div>
+			<div class="game-block__at text-center"> AT </div>
+			<div class="game-block__team text-center">
+				<a href="team.html?tname=${home.name}">
+					${home.name}
+				</a>
+			</div>
+			<div class="game-block__image">
+				<a href="team.html?tname=${home.name}">
+					<img src="${home.logo}">
+				</a>
+			</div>
+			<div class="game-block__score text-center">
+				${scores.home.points}
+			</div>
+		</div>
+	`;
+
 	gameDiv.appendChild(gameBlock);
 };
 
 const getHeadlines = async () => {
 	try {
 		const res = await fetch("https://nba-news-today.p.rapidapi.com/news", newsOptions);
-		if (res.status !== 200) throw new Error("Headlines not found");
+		if (res.status !== 200) throw new Error(`Headlines not found for ${month}/${day}/${year}`);
 		const headline = await res.json();
 
 		for (let i = 0; i < 10; i++) {
@@ -160,10 +174,11 @@ const getHeadlines = async () => {
 			newStory.innerHTML = `
 				<a href="${headline[i].url}" target="_blank">${headline[i].title}</a>
 			`;
+
 			headlines.appendChild(newStory);
 		}
 	} catch (err) {
-		console.log(err.message);
+		headlinesMsg.innerHTML = err.message;
 	}
 };
 

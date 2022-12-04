@@ -1,10 +1,14 @@
+// variables for player table
 const playerTableBody = document.querySelector(".player-table__body");
-const pageNumbers = document.querySelector(".page-numbers");
+
+// variables for search form
 const searchForm = document.querySelector(".search-form");
+
+// variables for pagination
+const pageNumbers = document.querySelector(".page-numbers");
 const playerSearch = document.querySelector(".player-search");
 let currentPage = 1;
-let rows = 25;
-let filterNullResults = [];
+let rows = 50;
 
 const options = {
 	method: "GET",
@@ -27,9 +31,16 @@ const getPlayers = async () => {
 		const res = await fetch("https://nba-player-individual-stats.p.rapidapi.com/players", options);
 		if (res.status !== 200) throw new Error("Player page not found");
 		const player = await res.json();
+		let paginatedPlayers = [];
 
-		renderPlayers(player, playerTableBody, rows, currentPage);
-		pagination(player, pageNumbers, rows, currentPage);
+		player.map((p) => {
+			if (p.team !== null) {
+				paginatedPlayers.push(p);
+			}
+		});
+
+		renderPlayers(paginatedPlayers, playerTableBody, rows, currentPage);
+		pagination(paginatedPlayers, pageNumbers, rows, currentPage);
 	} catch (err) {
 		console.log(err.message);
 	}
@@ -38,17 +49,10 @@ const getPlayers = async () => {
 const pagination = (playerList, wrapper, rowsPerPage, page) => {
 	wrapper.innerHTML = "";
 
-	let filtered = [];
-	playerList.map((listItem) => {
-		if (listItem.team !== null) {
-			filtered.push(listItem);
-		}
-	});
-
-	let pageCount = Math.ceil(filtered.length / rowsPerPage);
+	let pageCount = Math.ceil(playerList.length / rowsPerPage);
 
 	for (let i = 1; i < pageCount + 1; i++) {
-		let btn = paginationButton(i, filterNullResults);
+		let btn = paginationButton(i, playerList);
 		wrapper.appendChild(btn);
 	}
 };
@@ -56,11 +60,17 @@ const pagination = (playerList, wrapper, rowsPerPage, page) => {
 const paginationButton = (page, playerList) => {
 	let button = document.createElement("button");
 	button.innerHTML = page;
+
 	if (currentPage == page) button.classList.add("active");
 
 	button.onclick = () => {
 		currentPage = page;
 		renderPlayers(playerList, playerTableBody, rows, currentPage);
+
+		let currentBtn = document.querySelector(".page-numbers button.active");
+		currentBtn.classList.remove("active");
+
+		button.classList.add("active");
 	};
 
 	return button;
@@ -74,12 +84,8 @@ const renderPlayers = (playerList, wrapper, rowsPerPage, page) => {
 	let end = start + rowsPerPage;
 
 	playerList.sort((a, b) => a.id - b.id);
-	playerList.map((listItem) => {
-		if (listItem.team !== null) {
-			filterNullResults.push(listItem);
-		}
-	});
-	let paginated = filterNullResults.slice(start, end);
+
+	let paginated = playerList.slice(start, end);
 
 	paginated.map((p) => {
 		let playerRow = document.createElement("tr");

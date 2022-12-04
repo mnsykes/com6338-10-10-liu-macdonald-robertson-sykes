@@ -12,9 +12,11 @@
 		/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/player.css" />
 		<title>Individual Players Page</title>
 	</head>
 	<body>
+		<!-- START GRID -->
 		<div id="grid">
 			<!-- START HEADER -->
 			<header class="header">
@@ -39,45 +41,49 @@
 			</header>
 			<!-- END HEADER -->
 			<main class="main__wrapper">
-				<section id="content"></section>
-				<div class="search-results scroll-table">
-					<h2 class="section-headline">Search Results</h2>
-					<table class="table search-table">
-						<thead>
-							<tr>
-								<th></th>
-								<th class="body-text">PLAYER</th>
-								<th class="body-text">NUMBER</th>
-								<th class="body-text">POSITION</th>
-								<th class="body-text">TEAM</th>
-							</tr>
-						</thead>
-						<tbody class="search-table__body"></tbody>
-					</table>
+				<div class="search-results">
+					<div class="scroll-table">
+						<h2 class="section-headline">Search Results</h2>
+						<table class="table search-table">
+							<thead>
+								<tr>
+									<th></th>
+									<th class="body-text">PLAYER</th>
+									<th class="body-text">NUMBER</th>
+									<th class="body-text">POSITION</th>
+									<th class="body-text">TEAM</th>
+								</tr>
+							</thead>
+							<tbody class="search-table__body"></tbody>
+						</table>
+					</div>
 				</div>
-				<div class="season-averages scroll-table">
+				<section id="content"></section>
+				<div class="season-averages">
 					<h2 class="section-headline">Season Averages</h2>
-					<table class="table averages-table">
-						<thead>
-							<tr>
-								<th class="freeze-col body-text">SEASON</th>
-								<th class="body-text">TEAM</th>
-								<th class="body-text">GP</th>
-								<th class="body-text">GS</th>
-								<th class="body-text">MPG</th>
-								<th class="body-text">FG%</th>
-								<th class="body-text">FT%</th>
-								<th class="body-text">3P%</th>
-								<th class="body-text">TO</th>
-								<th class="body-text">BLK</th>
-								<th class="body-text">REB</th>
-								<th class="body-text">AST</th>
-								<th class="body-text">PTS</th>
-							</tr>
-						</thead>
-						<tbody class="averages-table__body"></tbody>
-						<tfoot class="career-averages"></tfoot>
-					</table>
+					<div class="season-averages scroll-table">
+						<table class="table averages-table">
+							<thead>
+								<tr>
+									<th class="freeze-col body-text">SEASON</th>
+									<th class="body-text">TEAM</th>
+									<th class="body-text">GP</th>
+									<th class="body-text">GS</th>
+									<th class="body-text">MPG</th>
+									<th class="body-text">FG%</th>
+									<th class="body-text">FT%</th>
+									<th class="body-text">3P%</th>
+									<th class="body-text">TO</th>
+									<th class="body-text">BLK</th>
+									<th class="body-text">REB</th>
+									<th class="body-text">AST</th>
+									<th class="body-text">PTS</th>
+								</tr>
+							</thead>
+							<tbody class="averages-table__body"></tbody>
+							<tfoot class="career-averages"></tfoot>
+						</table>
+					</div>
 				</div>
 			</main>
 			<!-- START FOOTER -->
@@ -92,6 +98,7 @@
 			</footer>
 			<!-- END FOOTER -->
 		</div>
+		<!-- END GRID -->
 		<script src="assets/js/player.js"></script>
 	</body>
 </html>

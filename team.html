@@ -16,6 +16,7 @@
 		<title>Teams Page</title>
 	</head>
 	<body>
+		<!-- START GRID -->
 		<div id="grid">
 			<!-- START HEADER -->
 			<header class="header">
@@ -38,14 +39,19 @@
 				<!-- END NAV -->
 			</header>
 			<!-- END HEADER -->
+
+			<!-- START MAIN -->
 			<main class="main__wrapper">
-				<section id="content">
+				<div class="logos">
 					<div class="eastTeamEl"></div>
 					<div class="westTeamEl"></div>
-					<div class="team-info"></div>
+				</div>
+				<div class="team-info"></div>
 
+				<!-- START TEAM ROSTER -->
+				<div class="team-roster">
+					<h2 class="subheading text-center">Team Roster</h2>
 					<div class="scroll-table">
-						<h2 class="section-headline">Team Roster</h2>
 						<table class="table roster-table">
 							<thead>
 								<tr>
@@ -69,13 +75,18 @@
 							<tbody class="roster-table__body"></tbody>
 						</table>
 					</div>
-				</section>
+				</div>
+				<!-- END TEAM ROSTER -->
+
 				<!-- START HEADLINES -->
 				<div class="headlines">
-					<h2 class="section-headline">Team News</h2>
+					<h2 class="subheading text-center">Team News</h2>
 				</div>
 				<!-- END HEADLINES -->
 			</main>
+			<!-- END MAIN -->
+
+			<!-- START FOOTER -->
 			<footer class="footer">
 				<div class="footer__logo">
 					<img src="assets/images/cryingjordan.png" alt="Crying Jordan" style="width: 5%" />
@@ -85,7 +96,9 @@
 					<a href="allplayers.html" class="nav__link nav__link_nav">Players</a>
 				</div>
 			</footer>
+			<!-- END FOOTER -->
 		</div>
+		<!-- END GRID -->
 		<script src="assets/js/team.js"></script>
 	</body>
 </html>

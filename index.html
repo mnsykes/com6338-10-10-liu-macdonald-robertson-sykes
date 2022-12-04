@@ -16,6 +16,7 @@
 		<title>Group 2 Project</title>
 	</head>
 	<body>
+		<!-- START GRID -->
 		<div id="grid">
 			<!-- START HEADER -->
 			<header class="header">
@@ -29,17 +30,19 @@
 					<div class="nav__links">
 						<a href="team.html" class="nav__link nav__link_nav">Teams</a>
 						<a href="allplayers.html" class="nav__link nav__link_nav">Players</a>
+						<form class="search-form">
+							<input type="text" class="player-search" placeholder="player last name" />
+							<button type="submit" class="search-btn">SUBMIT</button>
+						</form>
 					</div>
-					<form class="search-form">
-						<input type="text" class="player-search" placeholder="player last name" />
-						<button type="submit" class="search-btn">SUBMIT</button>
-					</form>
 				</div>
 				<!-- END NAV -->
 			</header>
 			<!-- END HEADER -->
+
+			<!-- START MAIN -->
 			<main class="main__wrapper">
-				<h1 class="subheading">The Amazing NBA Stats Site</h1>
+				<h1 class="subheading text-center">The Amazing NBA Stats Site</h1>
 				<div class="hero">
 					<div class="hero__jumbotron_index"></div>
 				</div>
@@ -100,18 +103,23 @@
 				<section class="news-scores">
 					<!-- START BOX SCORES -->
 					<div class="box-scores">
-						<h2 class="section-headline text-center">Scores</h2>
+						<h2 class="subheading text-center">Scores</h2>
+						<div class="box-score__msg body-text text-center"></div>
 						<div class="game-div"></div>
 					</div>
 					<!-- END BOX SCORES -->
 
 					<!-- START HEADLINES -->
 					<div class="headlines">
-						<h2 class="section-headline">News From Around the League</h2>
+						<h2 class="subheading text-center">News From Around the League</h2>
+						<div class="headlines-msg body-text text-center"></div>
 					</div>
 					<!-- END HEADLINES -->
 				</section>
 			</main>
+			<!-- END MAIN -->
+
+			<!-- START FOOTER -->
 			<footer class="footer">
 				<div class="footer__logo">
 					<img src="assets/images/cryingjordan.png" alt="Crying Jordan" style="width: 5%" />
@@ -121,7 +129,9 @@
 					<a href="allplayers.html" class="nav__link nav__link_nav">Players</a>
 				</div>
 			</footer>
+			<!-- END FOOTER -->
 		</div>
+		<!-- END GRID -->
 		<script src="assets/js/index.js"></script>
 	</body>
 </html>
